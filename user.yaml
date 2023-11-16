@@ -1,0 +1,48 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: admin
+  labels:
+    strimzi.io/cluster: amq
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+    - host: '*'
+      operation: Read
+      resource:
+        name: comum
+        patternType: literal
+        type: topic
+    - host: '*'
+      operation: Describe
+      resource:
+        name: comum
+        patternType: literal
+        type: topic
+    - host: '*'
+      operation: Read
+      resource:
+        name: springboot
+        patternType: literal
+        type: group
+    - host: '*'
+      operation: Write
+      resource:
+        name: comum
+        patternType: literal
+        type: topic
+    - host: '*'
+      operation: Create
+      resource:
+        name: comum
+        patternType: literal
+        type: topic
+    - host: '*'
+      operation: Describe
+      resource:
+        name: comum
+        patternType: literal
+        type: topic
+    type: simple
